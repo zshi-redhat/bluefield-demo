@@ -1,0 +1,6 @@
+spec:
+  template:
+    spec:
+      containers:
+      - name: network-operator
+        image: quay.io/zshi/cluster-network-operator:bluefield
