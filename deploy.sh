@@ -15,7 +15,7 @@ oc patch -p "$(cat manifests/override-cno-image-patch.yaml)" deploy network-oper
 oc patch -p "$(cat manifests/override-ovn-kubernetes-image-patch.yaml)" deploy network-operator -n openshift-network-operator
 
 # set external-openvswitch label to nodes with bluefield cards
-oc label node sriov-worker-1 network.operator.openshift.io/external-openvswitch=true
+oc label node sriov-worker-1 network.operator.openshift.io/external-openvswitch=true --overwrite
 
 # deploy sriov-network-operator
 git clone https://github.com/zshi-redhat/sriov-network-operator.git
