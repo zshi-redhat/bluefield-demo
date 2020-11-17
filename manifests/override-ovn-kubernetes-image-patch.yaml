@@ -5,5 +5,5 @@ spec:
       - name: network-operator
         env:
         - name: OVN_IMAGE
-          value: quay.io/zshi/ovn-kubernetes:bluefield
+          value: quay.io/zshi/ovn-daemonset:bluefield
 
