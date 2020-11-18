@@ -3,4 +3,5 @@ spec:
     spec:
       containers:
       - name: network-operator
+        # build from https://github.com/zshi-redhat/cluster-network-operator/tree/bluefield
         image: quay.io/zshi/cluster-network-operator:bluefield
