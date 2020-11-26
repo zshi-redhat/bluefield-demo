@@ -22,7 +22,11 @@ git clone https://github.com/zshi-redhat/sriov-network-operator.git
 cd sriov-network-operator
 git checkout bluefield
 
+# access api via node ip
+export KUBERNETES_SERVICE_HOST_CONFIG_DAEMON=api-int.sriov.ovn.testing
+export KUBERNETES_SERVICE_PORT_CONFIG_DAEMON=6443
 export SRIOV_NETWORK_OPERATOR_IMAGE=quay.io/zshi/sriov-network-operator:bluefield
+export SRIOV_NETWORK_CONFIG_DAEMON_IMAGE=quay.io/zshi/sriov-network-config-daemon:bluefield
 make deploy-setup
 
 
