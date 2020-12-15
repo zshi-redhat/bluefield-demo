@@ -1,5 +1,10 @@
 #!/bin/bash
 
+# Set BF system time
+# system time is not sychronized on BF card, set it manually for testing
+# or start ntpd to synchronize system time automatically from remote server
+date -s "11 DEC 2020 03:17:00"
+
 # Disable firewalld
 systemctl disable firewalld
 systemctl stop firewalld
