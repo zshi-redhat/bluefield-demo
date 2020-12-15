@@ -6,14 +6,13 @@ spec:
   hostNetwork: true
   hostPID: true
   nodeSelector:
-    kubernetes.io/hostname: worker-2
+    kubernetes.io/hostname: worker-h09
   containers:
   - name: rshim
     image: quay.io/zshi/rshim:bluefield
     imagePullPolicy: IfNotPresent
     command: [ "/bin/bash", "-c", "--" ]
     args: ["rpm -ivh /tmp/mybuildtest/RPMS/x86_64/*; /usr/sbin/rshim; while true; do sleep 300000; done;"]
-    #    args: [ "while true; do sleep 300000; done;" ]
     securityContext:
       privileged: true
       procMount: Default
@@ -21,14 +20,6 @@ spec:
     volumeMounts:
     - mountPath: /host
       name: host
-  - name: minicom
-    image: quay.io/zshi/rshim:bluefield
-    imagePullPolicy: IfNotPresent
-    command: [ "/bin/bash", "-c", "--" ]
-    args: [ "while true; do sleep 300000; done;" ]
-    securityContext:
-      privileged: true
-    volumeMounts:
     - mountPath: /dev
       name: dev
   volumes:
