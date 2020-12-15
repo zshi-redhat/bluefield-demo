@@ -125,8 +125,8 @@ oc -n openshift-ovn-kubernetes exec <ovnkube-node-9l99q> -c ovnkube-node -- cat 
 # add api-int.<domain> in /etc/hosts
 sed -i -e '$a192.168.111.5	api-int.sriov.ovn.testing' /etc/hosts
 
-# ovn-controller
-bf_ovn_node.sh
+# Run ovn-controller container
+ovn_node.sh
 
-# ovnkube-node
-bf_ovn_controller.sh
+# Run ovnkube-node container
+ovn_controller.sh
