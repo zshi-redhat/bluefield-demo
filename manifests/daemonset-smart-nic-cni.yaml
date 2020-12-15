@@ -1,0 +1,42 @@
+---
+apiVersion: apps/v1
+kind: DaemonSet
+metadata:
+  name: smart-nic-cni
+  namespace: default
+  labels:
+    tier: node
+    app: smart-nic-cni
+spec:
+  selector:
+    matchLabels:
+      name: smart-nic-cni
+  template:
+    metadata:
+      labels:
+        name: smart-nic-cni
+        tier: node
+        app: smart-nic-cni
+    spec:
+      hostNetwork: true
+      nodeSelector:
+        kubernetes.io/hostname: worker-h09
+      tolerations:
+      - key: node-role.kubernetes.io/master
+        operator: Exists
+        effect: NoSchedule
+      containers:
+      - name: smartnic
+        image: quay.io/zshi/ovn-daemonset:bluefield
+        imagePullPolicy: IfNotPresent
+        command: [ '/bin/bash', '-c', '--' ]
+        args: ['cp -f /usr/libexec/cni/ovn-k8s-cni-smart-nic /cni-bin-dir/ && sleep infinity']
+        securityContext:
+          privileged: true
+        volumeMounts:
+        - name: host-cni-dir
+          mountPath: /cni-bin-dir
+      volumes:
+        - name: host-cni-dir
+          hostPath:
+            path: /var/lib/cni/bin
