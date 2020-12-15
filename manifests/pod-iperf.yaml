@@ -1,0 +1,11 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: pod-regular
+spec:
+  nodeSelector:
+    kubernetes.io/hostname: worker-h01
+  containers:
+  - name: appcntr1
+    image: quay.io/zshi/centos:iperf
+    command: ['/bin/sh', '-c', 'sleep infinity']
