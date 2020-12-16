@@ -23,6 +23,9 @@ mkdir -p /root/ovn-cert
 mkdir -p /root/ovnkube-node
 touch /var/lib/cni/networks/ovn-k8s-cni-overlay
 
+mkdir -p /var/lib/openvswitch/etc
+mkdir -p /var/lib/openvswitch/data
+
 podman run --pid host --network host --user 0 --name ovnkube-node -dit --privileged \
 	-v /etc/systemd/system:/etc/systemd/system \
 	-v /run/ovn-kubernetes:/run/ovn-kubernetes \
