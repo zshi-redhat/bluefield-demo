@@ -23,5 +23,5 @@ podman run --pid host --network host --user 0 --name ovn-controller -dit --privi
 	-e K8S_NODE=$K8S_NODE \
 	-e OVN_LOG_LEVEL=$OVN_LOG_LEVEL \
 	--entrypoint=/usr/bin/ovn-controller \
-	quay.io/zshi/ovn-daemonset:bluefield-arm \
+	quay.io/zshi/ovn-daemonset:bluefield-arm-20201214 \
 	unix:/var/run/openvswitch/db.sock -vfile:off --no-chdir --pidfile=/var/run/ovn/ovn-controller.pid -p /ovn-cert/tls.key -c /ovn-cert/tls.crt -C /ovn-ca/ca-bundle.crt -vconsole:info
