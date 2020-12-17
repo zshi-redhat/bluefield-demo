@@ -20,7 +20,7 @@ spec:
     spec:
       hostNetwork: true
       nodeSelector:
-        kubernetes.io/hostname: worker-h09
+        network.operator.openshift.io/external-openvswitch: "true"
       tolerations:
       - key: node-role.kubernetes.io/master
         operator: Exists
