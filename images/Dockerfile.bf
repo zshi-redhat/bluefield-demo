@@ -50,10 +50,10 @@ http://download.eng.bos.redhat.com/brewroot/vol/rhel-8/packages/openvswitch2.13/
 http://download.eng.bos.redhat.com/brewroot/vol/rhel-8/packages/openvswitch2.13/2.13.0/79.el8fdp/$(uname -m)/python3-openvswitch2.13-2.13.0-79.el8fdp.$(uname -m).rpm \
 http://download.eng.bos.redhat.com/brewroot/vol/rhel-8/packages/openvswitch2.13/2.13.0/79.el8fdp/$(uname -m)/openvswitch2.13-ipsec-2.13.0-79.el8fdp.$(uname -m).rpm \
 http://download.eng.bos.redhat.com/brewroot/vol/rhel-8/packages/openvswitch-selinux-extra-policy/1.0/23.el8fdp/noarch/openvswitch-selinux-extra-policy-1.0-23.el8fdp.noarch.rpm \
-http://download.eng.bos.redhat.com/brewroot/vol/rhel-8/packages/ovn2.13/20.09.0/21.el8fdp/$(uname -m)/ovn2.13-20.09.0-21.el8fdp.$(uname -m).rpm \
-http://download.eng.bos.redhat.com/brewroot/vol/rhel-8/packages/ovn2.13/20.09.0/21.el8fdp/$(uname -m)/ovn2.13-central-20.09.0-21.el8fdp.$(uname -m).rpm \
-http://download.eng.bos.redhat.com/brewroot/vol/rhel-8/packages/ovn2.13/20.09.0/21.el8fdp/$(uname -m)/ovn2.13-host-20.09.0-21.el8fdp.$(uname -m).rpm \
-http://download.eng.bos.redhat.com/brewroot/vol/rhel-8/packages/ovn2.13/20.09.0/21.el8fdp/$(uname -m)/ovn2.13-vtep-20.09.0-21.el8fdp.$(uname -m).rpm
+http://download.eng.bos.redhat.com/brewroot/vol/rhel-8/packages/ovn2.13/20.09.0/21.el8fdn/$(uname -m)/ovn2.13-20.09.0-21.el8fdn.$(uname -m).rpm \
+http://download.eng.bos.redhat.com/brewroot/vol/rhel-8/packages/ovn2.13/20.09.0/21.el8fdn/$(uname -m)/ovn2.13-central-20.09.0-21.el8fdn.$(uname -m).rpm \
+http://download.eng.bos.redhat.com/brewroot/vol/rhel-8/packages/ovn2.13/20.09.0/21.el8fdn/$(uname -m)/ovn2.13-host-20.09.0-21.el8fdn.$(uname -m).rpm \
+http://download.eng.bos.redhat.com/brewroot/vol/rhel-8/packages/ovn2.13/20.09.0/21.el8fdn/$(uname -m)/ovn2.13-vtep-20.09.0-21.el8fdn.$(uname -m).rpm
 RUN rm -rf /var/cache/yum
 
 RUN mkdir -p /var/run/openvswitch
