@@ -28,6 +28,7 @@ mkdir -p /var/lib/openvswitch/etc
 mkdir -p /var/lib/openvswitch/data
 
 podman run --pid host --network host --user 0 --name ovnkube-node -dit --privileged \
+	-v /:/host:ro \
 	-v /etc/systemd/system:/etc/systemd/system \
 	-v /run/ovn-kubernetes:/run/ovn-kubernetes \
 	-v /run/netns:/run/netns \
