@@ -46,7 +46,7 @@ spec:
     spec:
       hostNetwork: true
       nodeSelector:
-        network.operator.openshift.io/external-openvswitch: "true"
+        network.operator.openshift.io/external-openvswitch: ""
       tolerations:
       - key: node-role.kubernetes.io/master
         operator: Exists
