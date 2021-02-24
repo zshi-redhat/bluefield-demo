@@ -5,6 +5,6 @@ spec:
       - name: network-operator
         env:
         - name: OVN_IMAGE
-          # build from manifests/Dockerfile with branch https://github.com/moshe010/ovn-kubernetes/tree/bf_support
-          value: quay.io/zshi/ovn-daemonset:bluefield
+          # build from images/Dockerfile.bf and https://github.com/ovn-org/ovn-kubernetes/pull/2005
+          value: quay.io/zshi/ovn-daemonset:x86-20210222
 
