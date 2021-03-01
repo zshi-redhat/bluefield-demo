@@ -4,4 +4,9 @@ spec:
       containers:
       - name: network-operator
         # build from https://github.com/zshi-redhat/cluster-network-operator/tree/bluefield-phase-2
-        image: quay.io/zshi/cluster-network-operator:bluefield-2005-20210222
+        #
+        # phase-2, adopt changes in ovn-k8s PR:2005
+        # image: quay.io/zshi/cluster-network-operator:bluefield-2005-20210222
+        #
+        # phase-2, adopt changes in ovn-k8s PR:2005, update ovn-ipsec daemon
+        image: quay.io/zshi/cluster-network-operator:bluefield-2005-20210301
