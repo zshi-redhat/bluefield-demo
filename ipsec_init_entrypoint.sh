@@ -35,7 +35,7 @@ then
 
   # The signer controller does not allow re-signing a key. We will
   # delete the old key to be sure it is not there
-  kubectl delete --ignore-not-found=true csr/$(K8S_NODE)
+  kubectl --kubeconfig /etc/kubernetes/config/kubeconfig delete --ignore-not-found=true csr/${K8S_NODE}
 
   # Request that our generated certificate signing request is
   # signed by the "network.openshift.io/signer" signer that is
@@ -43,11 +43,11 @@ then
   # certificate signing request using the signer-ca which has been
   # set up by the OperatorPKI. In this way, we have a signed certificate
   # and our private key has remained private on this host.
-  cat <<EOF | kubectl apply -f -
+  cat <<EOF | kubectl --kubeconfig /etc/kubernetes/config/kubeconfig apply -f -
   apiVersion: certificates.k8s.io/v1
   kind: CertificateSigningRequest
   metadata:
-    name: $(K8S_NODE)
+    name: ${K8S_NODE}
   spec:
     request: ${csr_64}
     signerName: network.openshift.io/signer
@@ -57,7 +57,7 @@ EOF
 
   # Wait until the certificate signing request has been signed.
   counter=0
-  until [ ! -z $(kubectl get csr/$(K8S_NODE) -o jsonpath='{.status.certificate}' 2>/dev/null) ]
+  until [ ! -z $(kubectl --kubeconfig /etc/kubernetes/config/kubeconfig get csr/${K8S_NODE} -o jsonpath='{.status.certificate}' 2>/dev/null) ]
   do
     ((counter++))
     sleep 1
@@ -70,9 +70,9 @@ EOF
 
 
   # Decode the signed certificate.
-  kubectl get csr/$(K8S_NODE) -o jsonpath='{.status.certificate}' | base64 -d | openssl x509 -outform pem -text -out /etc/openvswitch/keys/ipsec-cert.pem
+  kubectl --kubeconfig /etc/kubernetes/config/kubeconfig get csr/${K8S_NODE} -o jsonpath='{.status.certificate}' | base64 -d | openssl x509 -outform pem -text -out /etc/openvswitch/keys/ipsec-cert.pem
 
-  kubectl delete csr/$(K8S_NODE)
+  kubectl --kubeconfig /etc/kubernetes/config/kubeconfig delete csr/${K8S_NODE}
 
   # Get the CA certificate so we can authenticate peer nodes.
   cat /signer-ca/ca-bundle.crt | openssl x509 -outform pem -text > /etc/openvswitch/keys/ipsec-cacert.pem

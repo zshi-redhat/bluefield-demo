@@ -12,6 +12,12 @@ export OVN_SB_DB_LIST="ssl:192.168.111.20:9642,ssl:192.168.111.21:9642,ssl:192.1
 export GENEVE_PORT=6081
 export SMART_NIC_IP="192.168.111.55"
 
+# quay.io/zshi/ovn-daemonset:arm-20210222
+# build on aarch64, ovn-k8s PR:2005
+
+# quay.io/zshi/ovn-daemonset:arm-20210301
+# build on aarch64, ovn-k8s PR:2005, ipsec_* entrypoint script
+export OVN_K8S_IMAGE="quay.io/zshi/ovn-daemonset:arm-20210301"
 
 mkdir -p /run/ovn-kubernetes
 mkdir -p /run/netns
@@ -53,5 +59,5 @@ podman run --pid host --network host --user 0 --name ovnkube-node -dit --privile
 	-e OVN_NB_DB_LIST=$OVN_NB_DB_LIST \
 	-e OVN_SB_DB_LIST=$OVN_SB_DB_LIST \
 	--entrypoint /usr/bin/ovnkube \
-	quay.io/zshi/ovn-daemonset:arm-20210222 \
+	$OVN_K8S_IMAGE \
 	--init-node ${K8S_NODE} --encap-ip ${SMART_NIC_IP} --nb-address $OVN_NB_DB_LIST --sb-address $OVN_SB_DB_LIST --nb-client-privkey /ovn-cert/tls.key --nb-client-cert /ovn-cert/tls.crt --nb-client-cacert /ovn-ca/ca-bundle.crt --nb-cert-common-name ovn --sb-client-privkey /ovn-cert/tls.key --sb-client-cert /ovn-cert/tls.crt --sb-client-cacert /ovn-ca/ca-bundle.crt --sb-cert-common-name ovn --config-file=/run/ovnkube-config/ovnkube.conf --loglevel ${OVN_KUBE_LOG_LEVEL}  --inactivity-probe=$OVN_CONTROLLER_INACTIVITY_PROBE $OVN_GATEWAY_OPTIONS $OVNKUBE_NODE_MODE --metrics-bind-address 127.0.0.1:29103

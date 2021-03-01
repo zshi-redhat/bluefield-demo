@@ -33,6 +33,7 @@ RUN INSTALL_PKGS=" \
 	kubectl \
 	iproute \
 	iputils \
+	iptables \
 	http://download.eng.bos.redhat.com/brewroot/vol/rhel-8/packages/strace/5.7/2.el8/$(uname -m)/strace-5.7-2.el8.$(uname -m).rpm \
 	socat \
 	unbound-libs \
@@ -41,6 +42,10 @@ RUN INSTALL_PKGS=" \
 
 RUN yum -y update && yum clean all && rm -rf /var/cache/yum/*
 
+RUN dnf install -y \
+http://download.eng.bos.redhat.com/brewroot/vol/rhel-8/packages/ldns/1.7.0/21.el8/$(uname -m)/ldns-1.7.0-21.el8.$(uname -m).rpm
+RUN dnf install -y \
+http://download.eng.bos.redhat.com/brewroot/vol/rhel-8/packages/libreswan/4.1/1.el8/$(uname -m)/libreswan-4.1-1.el8.$(uname -m).rpm
 # Get a reasonable version of openvswitch (2.9.2 or higher)
 # docker build --build-arg rpmArch=ARCH -f Dockerfile.centos -t some_tag .
 # where ARCH can be x86_64 (default), aarch64, or ppc64le
@@ -71,6 +76,10 @@ COPY ovnkube.sh /root/
 COPY ovndb-raft-functions.sh /root/
 # override the rpm's ovn_k8s.conf with this local copy
 COPY ovn_k8s.conf /etc/openvswitch/ovn_k8s.conf
+
+# ipsec_* are the entry point for ovn-ipsec daemonset
+COPY ipsec_init_entrypoint.sh /root/
+COPY ipsec_entrypoint.sh /root/
 
 # copy git commit number into image
 COPY git_info /root
