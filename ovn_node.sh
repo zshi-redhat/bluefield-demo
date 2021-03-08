@@ -24,10 +24,10 @@ mkdir -p /run/netns
 mkdir -p /var/lib/cni/bin
 mkdir -p /var/lib/cni/networks
 
-mkdir -p /var/run/secrets/kubernetes.io/serviceaccount
 mkdir -p /root/ovn-ca
 mkdir -p /root/ovn-cert
 mkdir -p /root/ovnkube-node
+mkdir -p /root/secrets
 touch /var/lib/cni/networks/ovn-k8s-cni-overlay
 
 mkdir -p /var/lib/openvswitch/etc
@@ -49,7 +49,7 @@ podman run --pid host --network host --user 0 --name ovnkube-node -dit --privile
 	-v /root/ovn-ca:/ovn-ca \
 	-v /root/ovn-cert:/ovn-cert \
 	-v /var/run/ovn:/var/run/ovn \
-	-v /var/run/secrets/kubernetes.io/serviceaccount:/var/run/secrets/kubernetes.io/serviceaccount \
+	-v /root/secrets:/var/run/secrets/kubernetes.io/serviceaccount \
 	-e K8S_NODE=$K8S_NODE \
 	-e OVN_KUBE_LOG_LEVEL=$OVN_KUBE_LOG_LEVEL \
 	-e OVN_CONTROLLER_INACTIVITY_PROBE=$OVN_CONTROLLER_INACTIVITY_PROBE \

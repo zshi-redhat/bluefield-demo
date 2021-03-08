@@ -14,8 +14,8 @@ mkdir -p /etc/cni/net.d
 mkdir -p /var/run/openvswitch
 mkdir -p /var/log/openvswitch
 mkdir -p /var/lib/openvswitch/etc
-mkdir -p /var/run/secrets/kubernetes.io/serviceaccount
 mkdir -p /root/signer-ca
+mkdir -p /root/secrets
 mkdir -p /etc/kubernetes/cni/net.d
 touch /etc/kubernetes/cni/net.d/10-ovn-kubernetes.conf
 
@@ -26,7 +26,7 @@ podman run --network host --user 0 --name ovn-ipsec-init -dit --privileged \
 	-v /var/run/openvswitch:/run/openvswitch \
 	-v /var/log/openvswitch:/var/log/openvswitch \
 	-v /var/lib/openvswitch/etc:/etc/openvswitch \
-	-v /var/run/secrets/kubernetes.io/serviceaccount:/var/run/secrets/kubernetes.io/serviceaccount \
+	-v /root/secrets:/var/run/secrets/kubernetes.io/serviceaccount \
 	-v /root/signer-ca:/signer-ca \
 	-v /etc/kubernetes/config:/etc/kubernetes/config \
 	-e K8S_NODE=$K8S_NODE \
@@ -39,7 +39,7 @@ podman run --network host --user 0 --name ovn-ipsec -dit --privileged \
 	-v /var/run/openvswitch:/run/openvswitch \
 	-v /var/log/openvswitch:/var/log/openvswitch \
 	-v /var/lib/openvswitch/etc:/etc/openvswitch \
-	-v /var/run/secrets/kubernetes.io/serviceaccount:/var/run/secrets/kubernetes.io/serviceaccount \
+	-v /root/secrets:/var/run/secrets/kubernetes.io/serviceaccount \
 	-v /root/signer-ca:/signer-ca \
 	-v /etc/kubernetes/config:/etc/kubernetes/config \
 	-e K8S_NODE=$K8S_NODE \
