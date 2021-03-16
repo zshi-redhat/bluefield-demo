@@ -104,23 +104,28 @@ dhclient -v br-ex
 mkdir -p /root/ovn-ca
 mkdir -p /root/ovn-cert
 mkdir -p /root/ovnkube-config
+mkdir -p /root/secrets
 mkdir -p /var/run/secrets/kubernetes.io/serviceaccount
 
 # Run the cmd on host that has access to API server
 # get the ca-bundle.crt content and save it under /root/ovn-ca/ca-bundle.crt
-oc get configmap ovn-ca -n openshift-ovn-kubernetes -o yaml
+# oc get configmap ovn-ca -n openshift-ovn-kubernetes -o yaml
+oc get configmap ovn-ca -n openshift-ovn-kubernetes -o json | jq -r '.data["ca-bundle.crt"]' > /root/ovn-ca/ca-bundle.crt
 
 # get tls.{key,crt} contents and save them under /root/ovn-cert/tls.{key,tls} separately
-oc get secret ovn-cert -n openshift-ovn-kubernetes -o yaml
+# oc get secret ovn-cert -n openshift-ovn-kubernetes -o yaml
+oc get secret ovn-cert -n openshift-ovn-kubernetes -o json | jq -r '.data["tls.key"]' > /root/ovn-cert/tls.key
+oc get secret ovn-cert -n openshift-ovn-kubernetes -o json | jq -r '.data["tls.crt"]' > /root/ovn-cert/tls.crt
 
 # get ovnkube.conf content and save it under /root/ovnkube-config/ovnkube.conf
-oc get configmap ovnkube-config -n openshift-ovn-kubernetes -o yaml
+# oc get configmap ovnkube-config -n openshift-ovn-kubernetes -o yaml
+oc get configmap ovnkube-config -n openshift-ovn-kubernetes -o json | jq -r '.data["ovnkube.conf"]' > /root/ovnkube-config/ovnkube.conf
 
 # get ca.crt from running ovn pods and save it under /var/run/secrets/kubernetes/io/serviceaccount/ca.crt
-oc -n openshift-ovn-kubernetes exec <ovnkube-node-9l99q> -c ovnkube-node -- cat /var/run/secrets/kubernetes.io/serviceaccount/ca.crt
+oc -n openshift-ovn-kubernetes exec <ovnkube-node-9l99q> -c ovnkube-node -- cat /var/run/secrets/kubernetes.io/serviceaccount/ca.crt > /root/secrets/ca.crt
 
 # get token from running ovn pods and save it under /var/run/secrets/kubernetes/io/serviceaccount/token
-oc -n openshift-ovn-kubernetes exec <ovnkube-node-9l99q> -c ovnkube-node -- cat /var/run/secrets/kubernetes.io/serviceaccount/token
+oc -n openshift-ovn-kubernetes exec <ovnkube-node-9l99q> -c ovnkube-node -- cat /var/run/secrets/kubernetes.io/serviceaccount/token > /root/secrets/token
 
 # add api-int.<domain> in /etc/hosts
 sed -i -e '$a192.168.111.5	api-int.sriov.ovn.testing' /etc/hosts
