@@ -1,0 +1,13 @@
+diff --git a/go-controller/pkg/node/node.go b/go-controller/pkg/node/node.go
+index ec1b8064..50f7ba13 100644
+--- a/go-controller/pkg/node/node.go
++++ b/go-controller/pkg/node/node.go
+@@ -456,7 +456,8 @@ func (n *OvnNode) getVfRepName(pod *kapi.Pod) (string, error) {
+                return "", fmt.Errorf("smart-nic annotation \"%s\" not found", cni.SmartNicConnectionDetails)
+        }
+ 
+-       pfPciAddress := regexp.MustCompile(`pf=(\d+:\d+:\d+\.\d)`).FindStringSubmatch(smartNicDetails)[1]
++       klog.Infof("smartNicDetails: %v", smartNicDetails)
++       pfPciAddress := regexp.MustCompile(`pf=(\d+:\w+:\d+\.\d)`).FindStringSubmatch(smartNicDetails)[1]
+        pfIndex := string(pfPciAddress[len(pfPciAddress)-1])
+        vfIndex := regexp.MustCompile(`vf=(\d+)`).FindStringSubmatch(smartNicDetails)[1]
