@@ -9,4 +9,7 @@ spec:
         # image: quay.io/zshi/cluster-network-operator:bluefield-2005-20210222
         #
         # phase-2, adopt changes in ovn-k8s PR:2005, update ovn-ipsec daemon
-        image: quay.io/zshi/cluster-network-operator:bluefield-2005-20210301
+        # image: quay.io/zshi/cluster-network-operator:bluefield-2005-20210301
+        #
+        # phase-2, adopt changes in ovn-k8s PR: 2042, update ovn-ipsec daemon
+        image: quay.io/zshi/cluster-network-operator:bluefield-2042-20210402

@@ -8,7 +8,10 @@ export OVS_LOG_LEVEL="info"
 
 # quay.io/zshi/ovn-daemonset:arm-20210301
 # build on aarch64, ovn-k8s PR:2005, ipsec_* entrypoint script
-export OVN_K8S_IMAGE="quay.io/zshi/ovn-daemonset:arm-20210301"
+
+# quay.io/zshi/ovn-daemonset:arm-2042-20210402
+# build on aarch64, ovn-k8s PR:2042, ipsec_* entrypoint script
+export OVN_K8S_IMAGE="quay.io/zshi/ovn-daemonset:arm-2042-20210402"
 
 mkdir -p /etc/cni/net.d
 mkdir -p /var/run/openvswitch
