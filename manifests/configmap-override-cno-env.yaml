@@ -1,0 +1,11 @@
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: env-overrides
+  namespace: openshift-ovn-kubernetes
+data:
+  worker-wsfd-advnetlab52: |
+    OVNKUBE_NODE_MGMT_PORT_NETDEV=ens1f0v0
+  worker-wsfd-advnetlab51: |
+    OVNKUBE_NODE_MGMT_PORT_NETDEV=ens1f0v0
