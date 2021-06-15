@@ -8,5 +8,7 @@ spec:
           # build from images/Dockerfile.bf and https://github.com/ovn-org/ovn-kubernetes/pull/2005
           # value: quay.io/zshi/ovn-daemonset:x86-20210222
           # build from images/Dockerfile.bf and https://github.com/ovn-org/ovn-kubernetes/pull/2042
-          value: quay.io/zshi/ovn-daemonset:x86-2042-20210402
+          # value: quay.io/zshi/ovn-daemonset:x86-2042-20210402
+          # build from images/Dockerfile.bf and https://github.com/ovn-org/ovn-kubernetes/pull/2042
+          value: quay.io/zshi/ovn-daemonset:x86-2042-20210527
 

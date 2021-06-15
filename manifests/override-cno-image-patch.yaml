@@ -12,4 +12,7 @@ spec:
         # image: quay.io/zshi/cluster-network-operator:bluefield-2005-20210301
         #
         # phase-2, adopt changes in ovn-k8s PR: 2042, update ovn-ipsec daemon
-        image: quay.io/zshi/cluster-network-operator:bluefield-2042-20210402
+        # image: quay.io/zshi/cluster-network-operator:bluefield-2042-20210402
+        #
+        # phase-2, rebase against master, remove --disable-snat-multiple-gws from daemonset
+        image: quay.io/zshi/cluster-network-operator:bluefield-2042-20210531
