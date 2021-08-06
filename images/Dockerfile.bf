@@ -54,15 +54,15 @@ http://download.eng.bos.redhat.com/brewroot/vol/rhel-8/packages/rdma-core/32.0/4
 # docker build --build-arg rpmArch=ARCH -f Dockerfile.centos -t some_tag .
 # where ARCH can be x86_64 (default), aarch64, or ppc64le
 RUN dnf install -y \
-http://download.eng.bos.redhat.com/brewroot/vol/rhel-8/packages/openvswitch2.15/2.15.0/24.el8fdp/$(uname -m)/openvswitch2.15-2.15.0-24.el8fdp.$(uname -m).rpm \
-http://download.eng.bos.redhat.com/brewroot/vol/rhel-8/packages/openvswitch2.15/2.15.0/24.el8fdp/$(uname -m)/openvswitch2.15-devel-2.15.0-24.el8fdp.$(uname -m).rpm \
-http://download.eng.bos.redhat.com/brewroot/vol/rhel-8/packages/openvswitch2.15/2.15.0/24.el8fdp/$(uname -m)/python3-openvswitch2.15-2.15.0-24.el8fdp.$(uname -m).rpm \
-http://download.eng.bos.redhat.com/brewroot/vol/rhel-8/packages/openvswitch2.15/2.15.0/24.el8fdp/$(uname -m)/openvswitch2.15-ipsec-2.15.0-24.el8fdp.$(uname -m).rpm \
+http://download.eng.bos.redhat.com/brewroot/vol/rhel-8/packages/openvswitch2.15/2.15.0/28.el8fdp/$(uname -m)/openvswitch2.15-2.15.0-28.el8fdp.$(uname -m).rpm \
+http://download.eng.bos.redhat.com/brewroot/vol/rhel-8/packages/openvswitch2.15/2.15.0/28.el8fdp/$(uname -m)/openvswitch2.15-devel-2.15.0-28.el8fdp.$(uname -m).rpm \
+http://download.eng.bos.redhat.com/brewroot/vol/rhel-8/packages/openvswitch2.15/2.15.0/28.el8fdp/$(uname -m)/python3-openvswitch2.15-2.15.0-28.el8fdp.$(uname -m).rpm \
+http://download.eng.bos.redhat.com/brewroot/vol/rhel-8/packages/openvswitch2.15/2.15.0/28.el8fdp/$(uname -m)/openvswitch2.15-ipsec-2.15.0-28.el8fdp.$(uname -m).rpm \
 http://download.eng.bos.redhat.com/brewroot/vol/rhel-8/packages/openvswitch-selinux-extra-policy/1.0/23.el8fdp/noarch/openvswitch-selinux-extra-policy-1.0-23.el8fdp.noarch.rpm \
-http://download.eng.bos.redhat.com/brewroot/vol/rhel-8/packages/ovn2.13/20.12.0/115.el8fdp/$(uname -m)/ovn2.13-20.12.0-115.el8fdp.$(uname -m).rpm \
-http://download.eng.bos.redhat.com/brewroot/vol/rhel-8/packages/ovn2.13/20.12.0/115.el8fdp/$(uname -m)/ovn2.13-central-20.12.0-115.el8fdp.$(uname -m).rpm \
-http://download.eng.bos.redhat.com/brewroot/vol/rhel-8/packages/ovn2.13/20.12.0/115.el8fdp/$(uname -m)/ovn2.13-host-20.12.0-115.el8fdp.$(uname -m).rpm \
-http://download.eng.bos.redhat.com/brewroot/vol/rhel-8/packages/ovn2.13/20.12.0/115.el8fdp/$(uname -m)/ovn2.13-vtep-20.12.0-115.el8fdp.$(uname -m).rpm
+http://download.eng.bos.redhat.com/brewroot/vol/rhel-8/packages/ovn21.09/21.09.0/8.el8fdp/$(uname -m)/ovn21.09-21.09.0-8.el8fdp.$(uname -m).rpm \
+http://download.eng.bos.redhat.com/brewroot/vol/rhel-8/packages/ovn21.09/21.09.0/8.el8fdp/$(uname -m)/ovn21.09-central-21.09.0-8.el8fdp.$(uname -m).rpm \
+http://download.eng.bos.redhat.com/brewroot/vol/rhel-8/packages/ovn21.09/21.09.0/8.el8fdp/$(uname -m)/ovn21.09-host-21.09.0-8.el8fdp.$(uname -m).rpm \
+http://download.eng.bos.redhat.com/brewroot/vol/rhel-8/packages/ovn21.09/21.09.0/8.el8fdp/$(uname -m)/ovn21.09-vtep-21.09.0-8.el8fdp.$(uname -m).rpm
 RUN rm -rf /var/cache/yum
 
 RUN mkdir -p /var/run/openvswitch
