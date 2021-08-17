@@ -11,7 +11,7 @@ data:
                 "resourceName": "mlnx_bf",
                 "selectors": {
                     "vendors": ["15b3"],
-                    "devices": ["a2d3", "101e"],
+                    "devices": ["a2d6", "a2d3", "101e"],
                     "pfNames": ["ens1f0#1-3"] # exclude vf0 (ovn mgmt port on host)
                 }
             }
