@@ -15,4 +15,4 @@ spec:
         # image: quay.io/zshi/cluster-network-operator:bluefield-2042-20210402
         #
         # phase-2, rebase against master, remove --disable-snat-multiple-gws from daemonset
-        image: quay.io/zshi/cluster-network-operator:bluefield-2042-20210531
+        image: quay.io/billy99/cluster-network-operator:smartnic-2021-09-10-6
