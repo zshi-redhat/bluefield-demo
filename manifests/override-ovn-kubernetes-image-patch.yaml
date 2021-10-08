@@ -10,5 +10,5 @@ spec:
           # build from images/Dockerfile.bf and https://github.com/ovn-org/ovn-kubernetes/pull/2042
           # value: quay.io/zshi/ovn-daemonset:x86-2042-20210402
           # build from images/Dockerfile.bf and https://github.com/ovn-org/ovn-kubernetes/pull/2042
-          value: quay.io/zshi/ovn-daemonset:x86-2042-20210527
+          value: quay.io/billy99/ovn-daemonset:bluefield-x86-210910-1
 
