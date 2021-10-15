@@ -1,0 +1,51 @@
+#!/bin/bash -e
+
+exec 3>&1 # make stdout available as fd 3 for the result
+
+log=/var/log/infra-dpu-cni.log
+
+cniVersionStr="0.4.0"
+addErrorStr="Only host backed pods supported in Infra Cluster."
+unknownErrorStr="Unknown cni command: $CNI_COMMAND"
+
+echo >> $log
+echo "COMMAND: $CNI_COMMAND" >> $log
+
+case $CNI_COMMAND in
+ADD)
+    echo ${addErrorStr} >> $log
+echo "{
+  \"cniVersion\": \"${cniVersionStr}\",
+  \"code\": 7,
+  \"msg\": \"Not Supported\",
+  \"details\": \"${addErrorStr}\"
+}" >&3
+    exit 1 
+;;
+
+DEL)
+;;
+
+GET)
+;;
+
+VERSION)
+echo "{
+  \"cniVersion\": \"${cniVersionStr}\", 
+  \"supportedVersions\": [ \"0.3.0\", \"0.3.1\", \"0.4.0\" ] 
+}"
+;;
+
+*)
+    echo ${unknownErrorStr} >> $log
+echo "{
+  \"cniVersion\": \"${cniVersionStr}\",
+  \"code\": 4,
+  \"msg\": \"Invalid Configuration\",
+  \"details\": \"${unknownErrorStr}\"
+}" >&3
+    exit 1 
+;;
+
+esac
+
