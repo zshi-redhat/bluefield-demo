@@ -1,0 +1,8 @@
+FROM quay.io/fedora/fedora:35-aarch64
+
+RUN INSTALL_PKGS=" \
+	tcpdump \
+	net-tools \
+	" && \
+	yum install -y $INSTALL_PKGS
+CMD ["/bin/bash"]
